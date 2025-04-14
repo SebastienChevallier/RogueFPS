@@ -20,7 +20,7 @@ public class P_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        _rb.linearVelocity = ((_velocity.z * transform.forward) + (_velocity.x * transform.right)).normalized * Speed * Time.deltaTime;
+        _rb.linearVelocity = ((_velocity.z * transform.forward) + (_velocity.y * transform.up) + (_velocity.x * transform.right)).normalized * Speed * Time.deltaTime;
         Gravity();
     }
 
@@ -35,7 +35,7 @@ public class P_Movement : MonoBehaviour
 
     public void OnInputJump(InputAction.CallbackContext context)
     {
-        if(_isGrounded)
+        if(_isGrounded && context.started)
         {
             _isGrounded = false;
             _rb.AddForce(transform.up * JumpForce, ForceMode.Impulse);
@@ -44,14 +44,22 @@ public class P_Movement : MonoBehaviour
 
     public void Gravity()
     {
-        if (Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (Physics.Raycast(transform.position, -transform.up, 1.01f))
         {
             _isGrounded = true;
+        }
+        else
+        {
+            _isGrounded = false;
         }
 
         if(!_isGrounded) 
         {
-            _velocity.y += GravityForce * Time.deltaTime;        
+            _velocity.y += GravityForce * Time.deltaTime;
+        }
+        else
+        {
+            _velocity.y = 0;
         }
     }
 }
