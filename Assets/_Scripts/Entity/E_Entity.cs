@@ -25,6 +25,6 @@ public class E_Entity : MonoBehaviour, I_Health
 
     public void OnDie()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("");
     }
 }
