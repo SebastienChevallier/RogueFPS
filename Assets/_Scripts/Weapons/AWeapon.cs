@@ -10,7 +10,7 @@ public abstract class AWeapon : MonoBehaviour
 
     [Range(10, 50)]
     public int ammo;
-    [Range(0.1f, 1f)]
+    [Range(0.1f, 1.5f)]
     public float recoilSpeed;
     [Range(0.1f, 2f)]
     public float reloadSpeed;
