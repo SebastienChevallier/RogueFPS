@@ -26,6 +26,11 @@ public class BaseWeapon : AWeapon
         throw new System.NotImplementedException();
     }
 
+    public override void SecondaryShoot()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void Shoot()
     {
         if(!isRecoiling) 
