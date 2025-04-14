@@ -6,6 +6,7 @@ public abstract class AWeapon : MonoBehaviour
     protected bool isReleading;
     protected float recoilTime;
     protected float reloadTime;
+    public GameObject player;
 
     [Range(10, 50)]
     public int ammo;
@@ -17,6 +18,7 @@ public abstract class AWeapon : MonoBehaviour
     public int bulletsPerShoot;    
 
     public abstract void Shoot();
+    public abstract void SecondaryShoot();
 
     public abstract void Recoil();
 
