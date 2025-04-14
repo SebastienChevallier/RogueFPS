@@ -8,8 +8,8 @@ public class P_Movement : MonoBehaviour
     public float JumpForce;
     [Range(-30, 0)]public float GravityForce;
 
-    private Rigidbody _rb;
-    private Vector3 _velocity;
+    public Rigidbody _rb;
+    public Vector3 _velocity;
     public bool _isGrounded;
 
     private void Start()
@@ -20,14 +20,14 @@ public class P_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        _rb.linearVelocity = ((_velocity.z * transform.forward) + (_velocity.x * transform.right)).normalized * Speed * Time.deltaTime;
+        _rb.linearVelocity = (_velocity.y * transform.up) + ((_velocity.z * transform.forward) + (_velocity.x * transform.right)).normalized * Speed * Time.deltaTime;
         Gravity();
     }
 
     public void OnInputMove(InputAction.CallbackContext context)
     {
         Vector2 dir = context.ReadValue<Vector2>();
-        Vector3 finalDir = new Vector3(dir.x, 0, dir.y);
+        Vector3 finalDir = new Vector3(dir.x, _velocity.y, dir.y);
 
         _velocity = finalDir;
         //_velocity = finalDir.normalized * Speed;
@@ -35,23 +35,32 @@ public class P_Movement : MonoBehaviour
 
     public void OnInputJump(InputAction.CallbackContext context)
     {
-        if(_isGrounded)
+        if(_isGrounded && context.started)
         {
             _isGrounded = false;
-            _rb.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+            _rb.AddForce(transform.up * JumpForce * 100, ForceMode.Force);
+            
         }        
     }
 
     public void Gravity()
     {
-        if (Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (Physics.Raycast(transform.position, -transform.up, 1.01f))
         {
             _isGrounded = true;
+        }
+        else
+        {
+            _isGrounded = false;
         }
 
         if(!_isGrounded) 
         {
-            _velocity.y += GravityForce * Time.deltaTime;        
+            _velocity.y += GravityForce * Time.deltaTime;
+        }
+        else
+        {
+            _velocity.y = 0;
         }
     }
 }
