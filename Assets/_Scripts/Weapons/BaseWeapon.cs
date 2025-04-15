@@ -8,15 +8,15 @@ public class BaseWeapon : AWeapon
         {
             if (recoilTime < 10)
             {
-                recoilTime += Time.time * recoilSpeed * 0.01f;
+                recoilTime += recoilSpeed;
                 recoilTime = Mathf.Clamp(recoilTime, 0f, 10f);
-                Debug.Log("Recoiling..." + recoilTime*10 + "%");
+                //Debug.Log("Recoiling..." + recoilTime*10 + "%");
             }
             else
             {                
                 isRecoiling = false;
                 recoilTime = 0;
-                Debug.Log("Recoiled");
+                //Debug.Log("Recoiled");
             }            
         }        
     }
@@ -36,11 +36,11 @@ public class BaseWeapon : AWeapon
         if(!isRecoiling) 
         { 
             isRecoiling = true;
-            Debug.Log("Shoot");
+            //Debug.Log("Shoot");
 
             if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 100f))
             {
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
             }
         }
     }
