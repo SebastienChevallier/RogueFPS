@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 public class P_Movement : MonoBehaviour
 {
     public float Speed;
+    public float airSpeedMulti;
     public float JumpForce;
     [Range(-30, 0)]public float GravityForce;
-    public ForceMode forceMode;
+    
 
     public Rigidbody _rb;
     public Vector3 _velocity;
@@ -27,8 +28,8 @@ public class P_Movement : MonoBehaviour
     {
         Vector3 FinalVelocity = Vector3.zero;
         
-        FinalVelocity += _dir.x * transform.right * Speed;
-        FinalVelocity += _dir.z * transform.forward * Speed;
+        FinalVelocity += _dir.x * transform.right * Speed * airSpeedMulti;
+        FinalVelocity += _dir.z * transform.forward * Speed * airSpeedMulti;
         FinalVelocity += _dir.y * transform.up;
 
         FinalVelocity += _velocity;
@@ -47,11 +48,17 @@ public class P_Movement : MonoBehaviour
 
         if (Physics.Raycast(transform.position, -transform.up, 1.1f))
         {
-            _isGrounded = true;            
+            if(!_isGrounded) 
+            {
+                _isGrounded = true;
+                airSpeedMulti = 1;
+                //_dir.y = 0;
+            }            
         }
         else
         {
             _isGrounded = false;
+            airSpeedMulti = 0.65f;
         }
     }
 
@@ -61,7 +68,11 @@ public class P_Movement : MonoBehaviour
         Vector3 finalDir = new Vector3(dir.x, _dir.y, dir.y);
 
         _dir = finalDir;
-        //_velocity = finalDir.normalized * Speed;
+
+        if (_isGrounded && context.started)
+        {            
+            _dir.y = 0;
+        }
     }
 
     public void OnInputJump(InputAction.CallbackContext context)
@@ -78,6 +89,7 @@ public class P_Movement : MonoBehaviour
     public void Impulse(Vector3 direction)
     {
         _velocity = Vector3.zero;
+        _dir.y = 0;
         //_rb.AddForce(direction, forceMode);
         _velocity = direction;
     }

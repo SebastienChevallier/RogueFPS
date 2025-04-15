@@ -3,6 +3,7 @@ using UnityEngine;
 public class Repulsor : BaseWeapon
 {
     public float force;
+    public float jumpForce;
     public float distance;
     
     public override void Shoot()
@@ -19,7 +20,7 @@ public class Repulsor : BaseWeapon
                     {
                         //comp._velocity.y = 0;
                         //comp._rb.AddForce(-Camera.main.transform.forward * force * 5, ForceMode.Force);
-                        comp.Impulse(-transform.forward * force);
+                        comp.Impulse(-transform.forward * jumpForce);
                     }                    
                 }
 

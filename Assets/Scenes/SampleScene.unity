@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -635,8 +635,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 15
-  JumpForce: 7.5
-  GravityForce: -12
+  airSpeedMulti: 0
+  JumpForce: 15
+  GravityForce: -20
   forceMode: 0
   _rb: {fileID: 0}
   _velocity: {x: 0, y: 0, z: 0}
@@ -1601,9 +1602,9 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 5000
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -1650,7 +1651,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 3
 --- !u!1 &519598564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,7 +2789,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333518007}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3474,7 +3475,8 @@ MonoBehaviour:
   recoilSpeed: 1
   reloadSpeed: 0.1
   bulletsPerShoot: 1
-  force: 100
+  force: 500
+  jumpForce: 50
   distance: 50
 --- !u!1 &1949480966
 GameObject:

@@ -5,7 +5,7 @@ public class RepulsorEffect : AEffect
     public Rigidbody body;
     public override void OnEffectHit(object[] arg)
     {        
-        body.AddForce((Vector3)arg[0]);
+        body.AddForce((Vector3)arg[0], ForceMode.Impulse);
     }
 
     public override void OnHit(object[] arg)
