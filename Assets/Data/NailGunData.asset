@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200ac386617538249baeb24c9d158847, type: 3}
+  m_Name: NailGunData
+  m_EditorClassIdentifier: 
+  boxRadius: 2
+  damage: 6
+  delay: 1
+  movementDecreaseMult: 1.3
+  nailZonePrefab: {fileID: 9122883449772807735, guid: ef5ac62078a956c418055932210db9f3, type: 3}
+  gunForce: 1000
