@@ -25,6 +25,6 @@ public class E_Entity : MonoBehaviour, I_Health
 
     public void OnDie()
     {
-        Debug.Log("");
+       gameObject.SetActive(false);
     }
 }

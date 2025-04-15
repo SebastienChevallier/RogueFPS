@@ -3,24 +3,36 @@ using UnityEngine;
 public class NailGun : BaseWeapon
 {
     public NailGunData data;
+    public Transform playerCam;
     public override void Shoot()
     {
         if (!isRecoiling)
         {
             isRecoiling = true;
-
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f))
+            for (int i = 0; i < bulletsPerShoot; i++)
             {
-                CreateBox();
+                InstantiateNail();
             }
         }
     }
 
-    private void CreateBox()
+    private void InstantiateNail()
     {
+        Vector3 direction = GetSpreadDirection();
         NailZone sphere = Instantiate(data.NailZonePrefab);
-        
+        sphere.Init(data);
         sphere.gameObject.transform.position = transform.position + transform.forward * 1.5f;
-        sphere.rb.AddForce(transform.forward * data.GunForce);
+        sphere.rb.AddForce(direction * data.GunForce);
+    }
+
+    Vector3 GetSpreadDirection()
+    {
+        //Vector3 baseDirection = playerCam.transform.forward;
+        Vector3 baseDirection = (playerCam.transform.forward + player.transform.forward);
+        baseDirection.Normalize(); // très important
+        float spreadX = Random.Range(-data.SpreadAngle, data.SpreadAngle);
+        float spreadY = Random.Range(-data.SpreadAngle, data.SpreadAngle);
+        Quaternion spreadRotation = Quaternion.Euler(spreadY, spreadX, 0);
+        return spreadRotation * baseDirection;
     }
 }
