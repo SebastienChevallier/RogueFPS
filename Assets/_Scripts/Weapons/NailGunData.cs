@@ -15,6 +15,8 @@ public class NailGunData : ScriptableObject
     private NailZone nailZonePrefab;
     [SerializeField]
     private float gunForce;
+    [SerializeField]
+    private float spreadAngle;
 
     public float BoxRadius => boxRadius;
     public int Damage => damage;
@@ -22,5 +24,5 @@ public class NailGunData : ScriptableObject
     public float MovementDecreaseMult => movementDecreaseMult;
     public NailZone NailZonePrefab => nailZonePrefab;
     public float GunForce => gunForce;
-
+    public float SpreadAngle => spreadAngle;
 }
