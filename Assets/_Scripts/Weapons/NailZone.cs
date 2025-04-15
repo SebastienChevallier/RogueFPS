@@ -49,5 +49,6 @@ public class NailZone : MonoBehaviour
     private void Damage(E_Entity entity)
     {
         entity.OnDecreaseHealth(_nailData.Damage);
+        print($"Damage : {_nailData.Damage}, to {entity.name}");
     }
 }

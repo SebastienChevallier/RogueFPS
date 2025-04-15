@@ -20,7 +20,7 @@ public class NailGun : BaseWeapon
     {
         NailZone sphere = Instantiate(data.NailZonePrefab);
         
-        sphere.transform.position = player.transform.position + Vector3.forward * 1;
+        sphere.gameObject.transform.position = transform.position + transform.forward * 1.5f;
         sphere.rb.AddForce(transform.forward * data.GunForce);
     }
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   damage: 6
   delay: 1
   movementDecreaseMult: 1.3
-  nailZonePrefab: {fileID: 9199925095159754964, guid: ef5ac62078a956c418055932210db9f3, type: 3}
-  gunForce: 12
+  nailZonePrefab: {fileID: 9122883449772807735, guid: ef5ac62078a956c418055932210db9f3, type: 3}
+  gunForce: 1000
