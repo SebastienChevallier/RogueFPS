@@ -9,17 +9,14 @@ public class NailGun : BaseWeapon
         {
             isRecoiling = true;
 
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f))
-            {
-                CreateBox();
-            }
+            CreateBox();
         }
     }
 
     private void CreateBox()
     {
         NailZone sphere = Instantiate(data.NailZonePrefab);
-        
+        sphere.Init(data);
         sphere.gameObject.transform.position = transform.position + transform.forward * 1.5f;
         sphere.rb.AddForce(transform.forward * data.GunForce);
     }

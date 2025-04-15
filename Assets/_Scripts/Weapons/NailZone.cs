@@ -6,33 +6,67 @@ public class NailZone : MonoBehaviour
     public Rigidbody rb;
     private string layerName;
 
-    private List<E_Entity> _entities = new();
-    private List<float> _entitiesDelay = new();
+    private Dictionary<E_enemy, float> enemyTimers = new Dictionary<E_enemy, float>();
+    private Dictionary<E_enemy, float> enemyTimersSecure = new Dictionary<E_enemy, float>();
 
     private NailGunData _nailData;
-    private void Init(NailGunData nailData)
+    public void Init(NailGunData nailData)
     {
         layerName = "Enemy";
+        _nailData = nailData;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(layerName))
         {
-            _entities.Add(other.gameObject.GetComponent<E_Entity>());
-            _entitiesDelay.Add(_nailData.Delay);
+            print("add");
+            enemyTimers.Add(other.GetComponent<E_enemy>(), 0);
+        }
+    }
+    void Update()
+    {
+        // Liste des ennemis à retirer à la fin
+        List<E_enemy> toRemove = new List<E_enemy>();
+
+        // On fait une copie des paires pour itérer en sécurité
+        var enemies = new List<KeyValuePair<E_enemy, float>>(enemyTimers);
+
+        foreach (var pair in enemies)
+        {
+            E_enemy enemy = pair.Key;
+
+            if (enemy == null)
+            {
+                toRemove.Add(enemy);
+                continue;
+            }
+
+            float newTimer = enemyTimers[enemy] - Time.deltaTime;
+
+            if (newTimer <= 0f)
+            {
+                Damage(enemy);
+                enemyTimers[enemy] = _nailData.Delay; // reset timer
+            }
+            else
+            {
+                enemyTimers[enemy] = newTimer;
+            }
+        }
+
+        foreach (E_enemy enemy in toRemove)
+        {
+            enemyTimers.Remove(enemy);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void UpdateList()
     {
-        for (int i = 0; i < _entities.Count; i++)
+        enemyTimersSecure.Clear();
+        foreach (var pair in enemyTimers)
         {
-            _entitiesDelay[i] -= Time.deltaTime;
-            if ( _entitiesDelay[i] < 0 )
-            {
-                Damage(_entities[i]);
-            }
+            enemyTimersSecure.Add(pair.Key, enemyTimers[pair.Key]);
         }
     }
 
@@ -40,9 +74,8 @@ public class NailZone : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(layerName))
         {
-            int index = _entities.FindIndex(x => x.Equals(other.gameObject.GetComponent<E_Entity>()));
-            _entities.RemoveAt(index);
-            _entitiesDelay.RemoveAt(index);
+            print("Remove");
+            enemyTimers.Remove(other.GetComponent<E_enemy>());
         }
     }
 
