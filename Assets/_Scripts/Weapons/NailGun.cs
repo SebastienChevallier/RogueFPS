@@ -30,23 +30,14 @@ public class NailGun : BaseWeapon
 
     Vector3 GetSpreadDirection()
     {
-        /*        Vector3 baseDirection = playerCam.transform.forward;
-                baseDirection.Normalize();
-                float spreadX = Random.Range(-data.SpreadAngle, data.SpreadAngle);
-                float spreadY = Random.Range(-data.SpreadAngle, data.SpreadAngle);
-                Quaternion spreadRotation = Quaternion.Euler(spreadX, spreadY, 1);
-                return spreadRotation * baseDirection;*/
         Vector3 baseDirection = playerCam.transform.forward.normalized;
 
-        // Générer un offset aléatoire en angle
         float spreadAngleX = Random.Range(-data.SpreadAngle, data.SpreadAngle);
         float spreadAngleY = Random.Range(-data.SpreadAngle, data.SpreadAngle);
 
-        // Créer une rotation autour des axes locaux (droite et haut par rapport à baseDirection)
         Quaternion rotationX = Quaternion.AngleAxis(spreadAngleX, playerCam.transform.right);
         Quaternion rotationY = Quaternion.AngleAxis(spreadAngleY, playerCam.transform.up);
-
-        // Appliquer le spread au vecteur de base
+    
         Vector3 spreadDirection = rotationY * rotationX * baseDirection;
 
         return spreadDirection.normalized;
