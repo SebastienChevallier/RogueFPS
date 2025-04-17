@@ -18,8 +18,6 @@ public class Repulsor : BaseWeapon
                 {
                     if(player.TryGetComponent<P_Movement>(out P_Movement comp))
                     {
-                        //comp._velocity.y = 0;
-                        //comp._rb.AddForce(-Camera.main.transform.forward * force * 5, ForceMode.Force);
                         comp.Impulse(-transform.forward * jumpForce);
                     }                    
                 }
