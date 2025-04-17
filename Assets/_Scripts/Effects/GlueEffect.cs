@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GlueEffect : AEffect
 {
@@ -28,9 +29,38 @@ public class GlueEffect : AEffect
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask)
+        if ((LayerMask.value & (1 << collision.gameObject.layer)) != 0)
+        {            
+            if(collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                collision.gameObject.transform.SetParent(transform, true);
+                
+
+                rb.isKinematic = true;                
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if ((LayerMask.value & (1 << other.gameObject.layer)) != 0)
+        {            
+            if (other.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                other.gameObject.transform.SetParent(transform, true);
+                DesActiveColliders(other.gameObject);
+                rb.isKinematic = true;
+            }
+        }
+    }
+
+    public void DesActiveColliders(GameObject gameObject)
+    {
+        BoxCollider[] colliders = gameObject.GetComponentsInChildren<BoxCollider>();
+
+        foreach (BoxCollider collider in colliders)
         {
-            collision.gameObject.transform.SetParent(transform, false);
+            collider.isTrigger = true;
         }
     }
 }

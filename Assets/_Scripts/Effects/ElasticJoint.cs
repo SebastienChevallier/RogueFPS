@@ -14,6 +14,7 @@ public class ElasticJoint : MonoBehaviour
     // Initialisation lorsque les deux objets sont dynamiques.
     public void Initialize(Rigidbody dynamicRb, Rigidbody otherRb)
     {
+        if (dynamicRb == null || otherRb == null) { return; }
         rb1 = dynamicRb;
         rb2 = otherRb;
         lineRenderer.SetPosition(0, rb1.position);
@@ -23,6 +24,7 @@ public class ElasticJoint : MonoBehaviour
     // Initialisation pour un lien entre un objet dynamique et un point statique.
     public void Initialize(Rigidbody dynamicRb, Vector3 anchor)
     {
+        if(dynamicRb == null) { return; }
         rb1 = dynamicRb;
         rb2 = null;
         anchorPoint = anchor;

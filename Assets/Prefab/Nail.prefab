@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 9122883449772807735}
   - component: {fileID: 645533091906030350}
   - component: {fileID: 6070360975783076041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
