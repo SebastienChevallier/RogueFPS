@@ -155,9 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   ammo: 10
-  recoilSpeed: 1.5
-  reloadSpeed: 2
-  bulletsPerShoot: 7
+  recoilSpeed: 0.49
+  reloadSpeed: 0.11
+  bulletsPerShoot: 10
   data: {fileID: 11400000, guid: a48f28210e376c24598143f45ff6c620, type: 2}
   playerCam: {fileID: 0}
 --- !u!1 &8597208838363362350
