@@ -1,3 +1,6 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ElasticJoint : MonoBehaviour
@@ -9,6 +12,7 @@ public class ElasticJoint : MonoBehaviour
     public float damping = 5f;      
     
     public LineRenderer lineRenderer;
+    public List<GlueEffect> effects;
     
 
     // Initialisation lorsque les deux objets sont dynamiques.
@@ -17,6 +21,14 @@ public class ElasticJoint : MonoBehaviour
         if (dynamicRb == null || otherRb == null) { return; }
         rb1 = dynamicRb;
         rb2 = otherRb;
+
+        
+        GlueEffect GE1 = rb1.gameObject.GetOrAddComponent<GlueEffect>();
+        GlueEffect GE2 = rb2.gameObject.GetOrAddComponent<GlueEffect>();
+
+        effects.Add(GE1);
+        effects.Add(GE2);        
+
         lineRenderer.SetPosition(0, rb1.position);
         lineRenderer.SetPosition(1, rb2.position);
     }
@@ -28,6 +40,10 @@ public class ElasticJoint : MonoBehaviour
         rb1 = dynamicRb;
         rb2 = null;
         anchorPoint = anchor;
+
+        GlueEffect GE1 = rb1.gameObject.GetOrAddComponent<GlueEffect>();       
+
+        effects.Add(GE1);        
 
         lineRenderer.SetPosition(0, rb1.position);
         lineRenderer.SetPosition(1, anchorPoint);
@@ -61,6 +77,9 @@ public class ElasticJoint : MonoBehaviour
 
     private void OnDestroy()
     {
-        
+        foreach(GlueEffect effect in effects)
+        {
+            Destroy(effect.gameObject);
+        }
     }
 }

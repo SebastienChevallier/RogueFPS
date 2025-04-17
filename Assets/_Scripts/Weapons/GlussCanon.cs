@@ -1,118 +1,153 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GlussCanon : BaseWeapon
 {
+    [Header("Prefab & paramètres")]
     public GameObject ropePrefab;
+
     private GameObject rope;
-    public int nbOfAttach = 0;
-    private bool anchorIsStatic = false; // Indique si le premier tir est sur un objet statique
+    private int nbOfAttach = 0;
 
-    public Rigidbody rbA;
-    public Rigidbody rbB;
-
-    // R�initialise la corde
-    private void ResetRope()
-    {
-        if (rope != null)
-            Destroy(rope);
-
-        rope = null;
-        rbB = null;
-        rbA = null;
-        nbOfAttach = 0;
-        anchorIsStatic = false;
-    }
-
-    // Cr�e la corde � la position de l'impact
-    private void CreateRope(Vector3 position)
-    {
-        rope = Instantiate(ropePrefab, position, Quaternion.identity);
-        Debug.Log("Corde instanci�e");
-    }
-
-    // Attache la corde � l'objet dynamique vis�
-    private void AttachRope(Transform parent)
-    {
-        rope.transform.SetParent(parent, false);
-        // On active la physique sur la corde
-        //rope.GetComponent<Rigidbody>().isKinematic = false;
-        nbOfAttach++;
-        anchorIsStatic = false;
-        Debug.Log("Corde attach�e au Rigidbody via SetParent");
-    }
-
-    // Connecte via ElasticJoint dans le cas d'un ancrage dynamique (les deux extr�mit�s dynamiques)
-    private void ConnectElastic(Rigidbody Rb1, Rigidbody Rb2)
-    {
-        ElasticJoint joint = rope.GetComponent<ElasticJoint>();
-        joint.Initialize(Rb1, Rb2);
-        nbOfAttach++;
-        Debug.Log("ElasticJoint connect� (ancrage dynamique)");
-    }
-
-    // Connecte via ElasticJoint pour un ancrage statique (seul l'objet dynamique est mobile)
-    private void ConnectElasticToStatic(Rigidbody newRb)
-    {
-        
-        ElasticJoint joint = rope.GetComponent<ElasticJoint>();
-        joint.Initialize(newRb, rope.transform.position);
-
-        nbOfAttach++;
-        Debug.Log("ElasticJoint connect� (ancrage statique)");
-    }
+    private Rigidbody anchorRb;
+    private Rigidbody targetRb;
+    private Vector3 anchorPoint;
+    private Vector3 targetPoint;
 
     public override void Shoot()
     {
-        if (isRecoiling)
-            return;
+        if (isRecoiling) return;
+        StartRecoil();
+
+        ResetIfNeeded();
+
+        if (!TryGetHit(out RaycastHit hit)) return;
+
+        if (nbOfAttach == 0)
+            HandleFirstShot(hit);
+        else if (nbOfAttach == 1)
+            HandleSecondShot(hit);
+    }
+
+    // ─── GESTION DU RECOIL ─────────────────────────────────────────────────────────
+    private void StartRecoil()
+    {
         isRecoiling = true;
+    }
 
-        // R�initialise la corde si on a d�j� 2 attachements
-        if (nbOfAttach > 1)
-        {
+    // ─── RAYCAST ───────────────────────────────────────────────────────────────────
+    private bool TryGetHit(out RaycastHit hit)
+    {
+        return Physics.Raycast(
+            Camera.main.transform.position,
+            Camera.main.transform.forward,
+            out hit, 100f
+        );
+    }
+
+    // ─── RÉINITIALISATION ─────────────────────────────────────────────────────────
+    private void ResetIfNeeded()
+    {
+        if (nbOfAttach >= 2)
             ResetRope();
-            return;
-        }
-            
+    }
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 100f))
+    private void ResetRope()
+    {
+        if (rope != null) Destroy(rope);
+
+        rope = null;
+        nbOfAttach = 0;
+        anchorRb = null;
+        targetRb = null;
+        // anchorPoint et targetPoint restent intacts
+    }
+
+    // ─── PREMIER TIR ───────────────────────────────────────────────────────────────
+    private void HandleFirstShot(RaycastHit hit)
+    {
+        CreateRopeAt(hit.point);
+        RecordAnchor(hit);
+        nbOfAttach = 1;
+    }
+
+    private void CreateRopeAt(Vector3 position)
+    {
+        rope = Instantiate(ropePrefab, position, Quaternion.identity);
+        Debug.Log("Corde instanciée");
+    }
+
+    private void RecordAnchor(RaycastHit hit)
+    {
+        if (hit.collider.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
-            // Premier tir : cr�ation de la corde si elle n'existe pas d�j�
-            if (rope == null)
-            {
-                CreateRope(hit.point);
-
-                // Si l'objet touch� poss�de un Rigidbody, c'est un ancrage dynamique
-                if (hit.collider.TryGetComponent<Rigidbody>(out Rigidbody hitRb))
-                {
-                    rbA = hitRb;
-                }
-                else
-                {                    
-                    anchorIsStatic = true;
-                    Debug.Log("Ancrage statique (objet sans Rigidbody)");
-                }
-
-                return;
-            }
-
-            if (hit.collider.TryGetComponent<Rigidbody>(out Rigidbody hitRb2))
-            {
-                rbB = hitRb2;
-            }
-
-            if (anchorIsStatic)
-            {
-                if(rbA == null)
-                    ConnectElasticToStatic(rbB);
-                if(rbB == null)
-                    ConnectElasticToStatic(rbA);
-            }
-            else
-            {
-                // Si le premier tir �tait sur un objet dynamique
-                ConnectElastic(rbA, rbB);
-            }
+            anchorRb = rb;
+            Debug.Log("Ancrage dynamique enregistré");
         }
+        else
+        {
+            anchorPoint = hit.point;
+            Debug.Log("Ancrage statique enregistré");
+        }
+    }
+
+    // ─── SECOND TIR ────────────────────────────────────────────────────────────────
+    private void HandleSecondShot(RaycastHit hit)
+    {
+        RecordTarget(hit);
+        SetupElasticJoint();
+        nbOfAttach = 2;
+    }
+
+    private void RecordTarget(RaycastHit hit)
+    {
+        if (hit.collider.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            targetRb = rb;
+            Debug.Log("Cible dynamique enregistrée");
+        }
+        else
+        {
+            targetPoint = hit.point;
+            Debug.Log("Cible statique enregistrée");
+        }
+    }
+
+    // ─── INITIALISATION DU JOINT ÉLASTIQUE ─────────────────────────────────────────
+    private void SetupElasticJoint()
+    {
+        var joint = GetOrAddElasticJoint();
+
+        // 1) Dynamic ↔ Dynamic
+        if (anchorRb != null && targetRb != null)
+        {
+            joint.Initialize(anchorRb, targetRb);
+            Debug.Log("ElasticJoint : dynamique ↔ dynamique");
+        }
+        // 2) Dynamic ↔ Static
+        else if (anchorRb != null && targetRb == null)
+        {
+            joint.Initialize(anchorRb, targetPoint);
+            Debug.Log("ElasticJoint : dynamique ↔ statique");
+        }
+        // 3) Static ↔ Dynamic
+        else if (anchorRb == null && targetRb != null)
+        {
+            joint.Initialize(targetRb, anchorPoint);
+            Debug.Log("ElasticJoint : dynamique ↔ statique (inversé)");
+        }
+        // 4) Static ↔ Static (pas d’effet)
+        else
+        {
+            Debug.Log("Deux ancrages statiques → aucun effet");
+            ResetRope();
+        }
+    }
+
+    private ElasticJoint GetOrAddElasticJoint()
+    {
+        var joint = rope.GetComponent<ElasticJoint>();
+        if (joint == null)
+            joint = rope.AddComponent<ElasticJoint>();
+        return joint;
     }
 }
