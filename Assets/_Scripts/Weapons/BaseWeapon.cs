@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class BaseWeapon : AWeapon
 {
+    public Color weaponColor = Color.white;
+    public HUD_InGame hud;
+
+    public void OnEnable()
+    {
+        hud.UpdateColorCursor(weaponColor);
+    }
+
     public override void Recoil()
     {
         if(isRecoiling)
@@ -48,7 +56,7 @@ public class BaseWeapon : AWeapon
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = transform.parent.parent.gameObject;
+        player = transform.parent.parent.parent.gameObject;
     }
 
     // Update is called once per frame

@@ -71,15 +71,14 @@ public class ElasticJoint : MonoBehaviour
         {
             rb2.AddForce(-force);
             lineRenderer.SetPosition(1, rb2.position);
-        }
-            
+        }            
     }
 
     private void OnDestroy()
     {
         foreach(GlueEffect effect in effects)
-        {
-            Destroy(effect.gameObject);
+        {            
+            Destroy(effect);
         }
     }
 }

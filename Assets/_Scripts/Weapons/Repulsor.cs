@@ -10,7 +10,9 @@ public class Repulsor : BaseWeapon
     {
         if (!isRecoiling)
         {
-            isRecoiling = true;            
+            isRecoiling = true;
+
+            SphereCastRep();
 
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, distance))
             {
@@ -21,14 +23,22 @@ public class Repulsor : BaseWeapon
                         comp.Impulse(-transform.forward * jumpForce);
                     }                    
                 }
-
-                if (hit.collider.TryGetComponent<RepulsorEffect>(out RepulsorEffect RE))
-                {
-                    Vector3 direction = -(transform.position - hit.transform.position);
-                    object[] arg = new object[] { (direction * force) };
-                    RE.OnEffectHit(arg);
-                }
             }
         }
+    }
+
+    private RaycastHit[] SphereCastRep()
+    {
+        RaycastHit[] hits = Physics.SphereCastAll(Camera.main.transform.position, 0.5f, Camera.main.transform.forward, distance);
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.TryGetComponent<RepulsorEffect>(out RepulsorEffect RE))
+            {
+                Vector3 direction = -(transform.position - hit.transform.position);
+                object[] arg = new object[] { (direction * force) };
+                RE.OnEffectHit(arg);
+            }
+        }
+        return hits;
     }
 }

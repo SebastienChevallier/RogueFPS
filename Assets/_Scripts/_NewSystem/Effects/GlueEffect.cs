@@ -6,7 +6,7 @@ public class GlueEffect : AEffect
 {
     [SerializeField]
     public LayerMask LayerMask;
-    public List<GameObject> childs;
+    public List<GameObject> childs = new List<GameObject>();
 
     public override void OnEffectHit(object[] arg)
     {
@@ -38,14 +38,17 @@ public class GlueEffect : AEffect
     private void OnTriggerEnter(Collider other)
     {
         if ((LayerMask.value & (1 << other.gameObject.layer)) != 0)
-        {            
-            if (other.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            if (!other.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
-                other.gameObject.transform.SetParent(transform, true);
-                
-                rb.isKinematic = true;
-                DesActiveColliders(other.gameObject);
+                return;
             }
+            other.gameObject.transform.SetParent(transform, true);
+
+            rb.isKinematic = true;
+            DesActiveColliders(other.gameObject);
+
+            Destroy(rb);
         }
     }
 
@@ -57,11 +60,18 @@ public class GlueEffect : AEffect
         {
             collider.isTrigger = true;
         }
+
+        if(childs.Contains(gameObject))
+            return;
+
         childs.Add(gameObject);
     }
 
     private void OnDestroy()
     {
+        if(childs == null || childs.Count == 0)
+            return;
+
         foreach (GameObject child in childs)
         {
             Destroy(child);

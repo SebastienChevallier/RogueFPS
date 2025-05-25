@@ -30,7 +30,7 @@ public class P_Weapon : MonoBehaviour
 
     public void OnInputScroll(InputAction.CallbackContext context)
     {
-        if(context.started) 
+        if(context.performed) 
         {
             Vector2 input = context.ReadValue<Vector2>();            
             ChangeWeaponIndex((int)input.y);            
@@ -43,15 +43,14 @@ public class P_Weapon : MonoBehaviour
         {
             indexWeapon += val;
 
-            if (indexWeapon <= 0) 
+            if (indexWeapon < 0) 
             { 
                 indexWeapon = Weapons.Count-1;
                 
             }
             else if(indexWeapon >= Weapons.Count)
             {
-                indexWeapon = 0;
-                
+                indexWeapon = 0;                
             }
         }   
 

@@ -12,6 +12,7 @@ public class P_Movement : MonoBehaviour
 
     public Rigidbody _rb;
     public Vector3 _velocity;
+    public float descreaseFactor = 0.1f;
     public Vector3 _dir;
     public bool _isGrounded;
 
@@ -35,9 +36,9 @@ public class P_Movement : MonoBehaviour
         FinalVelocity += _velocity;
 
         //_velocity = Vector3.Lerp(_velocity, Vector3.zero, Time.deltaTime);
-        _velocity.x = Mathf.Lerp(_velocity.x, 0, Time.deltaTime);
-        _velocity.y = Mathf.Lerp(_velocity.y, 0, Time.deltaTime);
-        _velocity.z = Mathf.Lerp(_velocity.z, 0, Time.deltaTime);
+        _velocity.x = Mathf.Lerp(_velocity.x, 0, Time.deltaTime * descreaseFactor);
+        _velocity.y = Mathf.Lerp(_velocity.y, 0, Time.deltaTime * descreaseFactor);
+        _velocity.z = Mathf.Lerp(_velocity.z, 0, Time.deltaTime * descreaseFactor);
 
         _rb.linearVelocity = FinalVelocity;
         Gravity();
@@ -72,6 +73,12 @@ public class P_Movement : MonoBehaviour
         if (_isGrounded && context.started)
         {            
             _dir.y = 0;
+            _velocity = Vector3.zero; // Reset velocity on ground movement start
+        }
+
+        if (_isGrounded)
+        {            
+            _velocity = Vector3.zero; // Reset velocity on ground movement start
         }
     }
 
@@ -80,26 +87,27 @@ public class P_Movement : MonoBehaviour
         if(_isGrounded && context.started)
         {
             _isGrounded = false;
-            _dir.y = 0;
-            //_rb.AddForce(JumpForce * transform.up, ForceMode.Impulse);
+            _dir.y = 0;            
             _dir.y = JumpForce;
         }        
     }
 
     public void Impulse(Vector3 direction)
     {
-        _velocity = Vector3.zero;
-        _dir.y = 0;
-        //_rb.AddForce(direction, forceMode);
-        _velocity = direction;
+        //_velocity = Vector3.zero;
+        _dir.y = 0;        
+        _velocity = direction;        
     }
 
     public void Gravity()
     {        
         if(!_isGrounded) 
         {
-            _dir.y += GravityForce * Time.fixedDeltaTime;
+            _dir.y += GravityForce * Mathf.Exp(Time.fixedDeltaTime);
         }
-            
+        else
+        {
+            _velocity = Vector3.Lerp(_velocity, Vector3.zero, Time.deltaTime * descreaseFactor * 100);
+        }           
     }
 }
