@@ -702,8 +702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 1093335754}
-  sensibilityX: 7
-  sensibilityY: 5
+  sensibilityX: 14
+  sensibilityY: 10
 --- !u!114 &116562021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,9 +1109,9 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 1
+    m_NormalBias: 0
+    m_NearPlane: 10
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -1141,7 +1141,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
+  m_BounceIntensity: 1
   m_ColorTemperature: 5000
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 3
+  m_SoftShadowQuality: 0
 --- !u!1 &538137258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1205,7 @@ GameObject:
   - component: {fileID: 538137263}
   - component: {fileID: 538137262}
   - component: {fileID: 538137261}
-  - component: {fileID: 538137260}
+  - component: {fileID: 538137266}
   m_Layer: 0
   m_Name: PinBall (1)
   m_TagString: Untagged
@@ -1228,19 +1228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1251740210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &538137260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538137258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15b9768f70c34b54a954a20143223807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  body: {fileID: 0}
 --- !u!54 &538137261
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1363,6 +1350,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538137258}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &538137266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538137258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3df88137d12bcb499b50afe7682b2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &550672519
 GameObject:
   m_ObjectHideFlags: 0
