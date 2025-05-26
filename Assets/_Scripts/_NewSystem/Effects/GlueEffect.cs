@@ -9,6 +9,8 @@ public class GlueEffect : AEffect
     public List<GameObject> childs = new List<GameObject>();
     public int maxChilds = 50;
 
+    public GameObject FX;
+
     public override void OnEffectHit(object[] arg)
     {
         
@@ -23,6 +25,11 @@ public class GlueEffect : AEffect
     void Start()
     {
         LayerMask = 1 << 7;
+        if(transform.childCount >= 1)
+        {
+            FX = transform.GetChild(0).GetChild(0).gameObject;
+            FX.SetActive(true);
+        }
     }
 
     private void OnEnable()
@@ -71,7 +78,12 @@ public class GlueEffect : AEffect
 
     private void OnDestroy()
     {
-        if(childs == null || childs.Count == 0)
+        if (FX != null)
+        {
+            FX.SetActive(false);
+        }
+
+        if (childs == null || childs.Count == 0)
             return;
 
         foreach (GameObject child in childs)
