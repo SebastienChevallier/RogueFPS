@@ -11,10 +11,10 @@ public class Repulsor : BaseWeapon
         if (!isRecoiling)
         {
             isRecoiling = true;
-
+            ShootEvents.Invoke();
             SphereCastRep();
 
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, distance))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, distance/2))
             {
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {

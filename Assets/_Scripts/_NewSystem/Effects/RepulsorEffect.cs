@@ -11,8 +11,10 @@ public class RepulsorEffect : AEffect
 
     public override void OnEffectHit(object[] arg)
     {        
-        body.AddForce((Vector3)arg[0], ForceMode.Impulse);
-        
+        if(body != null)
+        {
+            body.AddForce((Vector3)arg[0], ForceMode.Impulse);
+        }
     }
 
     public override void OnHit(object[] arg)

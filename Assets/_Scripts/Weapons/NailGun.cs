@@ -9,6 +9,7 @@ public class NailGun : BaseWeapon
         if (!isRecoiling)
         {
             isRecoiling = true;
+            ShootEvents.Invoke();
             for (int i = 0; i < bulletsPerShoot; i++)
             {
                 InstantiateNail();
