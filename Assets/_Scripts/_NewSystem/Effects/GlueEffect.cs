@@ -7,6 +7,7 @@ public class GlueEffect : AEffect
     [SerializeField]
     public LayerMask LayerMask;
     public List<GameObject> childs = new List<GameObject>();
+    public int maxChilds = 50;
 
     public override void OnEffectHit(object[] arg)
     {
@@ -37,7 +38,7 @@ public class GlueEffect : AEffect
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((LayerMask.value & (1 << other.gameObject.layer)) != 0)
+        if ((LayerMask.value & (1 << other.gameObject.layer)) != 0 && childs.Count <= maxChilds)
         {
             if (!other.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
@@ -53,10 +54,10 @@ public class GlueEffect : AEffect
     }
 
     public void DesActiveColliders(GameObject gameObject)
-    {        
-        BoxCollider[] colliders = gameObject.GetComponentsInChildren<BoxCollider>();
+    {
+        Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
 
-        foreach (BoxCollider collider in colliders)
+        foreach (Collider collider in colliders)
         {
             collider.isTrigger = true;
         }
@@ -65,6 +66,7 @@ public class GlueEffect : AEffect
             return;
 
         childs.Add(gameObject);
+        maxChilds++;
     }
 
     private void OnDestroy()

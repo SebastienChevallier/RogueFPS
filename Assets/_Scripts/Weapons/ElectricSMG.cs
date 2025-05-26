@@ -11,6 +11,7 @@ public class ElectricSMG : BaseWeapon
         {
             isRecoiling = true;
             SphereCastRep();
+            ShootEvents.Invoke();
         }
     }
 

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
@@ -9,6 +10,9 @@ public class P_Weapon : MonoBehaviour
     public List<AWeapon> Weapons;
     public AWeapon CurrentWeapon;
     public int indexWeapon = 0;
+    
+
+    
 
     public void Awake()
     {
@@ -53,9 +57,8 @@ public class P_Weapon : MonoBehaviour
                 indexWeapon = 0;                
             }
         }   
-
+               
         
-        Debug.Log(indexWeapon);
         CurrentWeapon.gameObject.SetActive(false);
         CurrentWeapon = Weapons[indexWeapon];
         CurrentWeapon.gameObject.SetActive(true);

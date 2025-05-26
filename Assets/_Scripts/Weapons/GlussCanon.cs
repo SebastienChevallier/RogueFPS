@@ -21,6 +21,7 @@ public class GlussCanon : BaseWeapon
         ResetIfNeeded();
 
         if (!TryGetHit(out RaycastHit hit)) return;
+        ShootEvents.Invoke();
 
         if (nbOfAttach == 0)
             HandleFirstShot(hit);

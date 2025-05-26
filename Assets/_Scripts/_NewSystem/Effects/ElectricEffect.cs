@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 public class ElectricEffect : MonoBehaviour
 {
@@ -8,15 +10,19 @@ public class ElectricEffect : MonoBehaviour
     public float radius = 5f;               // Rayon de propagation
     public float duration = 2f;             // Durée totale de l'effet actif
     public GameObject electricFX;           // Prefab VFX (LineRenderer, particules…)
+    public LineRenderer lineRenderer;
     public LayerMask layerMask;             // Couches éligibles
     public float reactivationDelay = 1f;    // Délai avant réactivation
     public int dmg;
+    public int maxTransmition = 2;
+    
 
     // État interne
     public bool isActive = false;
     private float timer = 0f;
     private float lastActivationTime = -Mathf.Infinity;
     private HashSet<Transform> seen = new HashSet<Transform>();
+    private Transform target;
 
     /// <summary>
     /// À appeler pour démarrer l'effet sur cet objet
@@ -33,21 +39,37 @@ public class ElectricEffect : MonoBehaviour
 
         // activation du VFX local
         if (electricFX != null)
+        {
+            lineRenderer.gameObject.SetActive(true);
             electricFX.SetActive(true);
+        }
     }
 
     private void Update()
     {
-        if (!isActive) return;
+        if (!isActive) 
+        {
+            return;
+        }
+            
 
         timer += Time.deltaTime;
 
+        
+
+        
         // à mi-durée, on déclenche une vague de propagation
-        if (timer >= duration / 2f)
+        if (timer >= duration / 4f)
         {
             Electrify();
             // pour ne pas relancer plusieurs fois sur la même activation
             timer = duration;
+        }
+
+        if (target != null)
+        {
+            Vector3 pos = transform.InverseTransformPoint(target.position);
+            lineRenderer.SetPosition(1, pos);
         }
 
         // fin de l'effet
@@ -55,7 +77,11 @@ public class ElectricEffect : MonoBehaviour
         {
             isActive = false;
             if (electricFX != null)
+            {
+                lineRenderer.SetPosition(1, Vector3.zero);
+                lineRenderer.gameObject.SetActive(false);
                 electricFX.SetActive(false);
+            }                
         }
     }
 
@@ -79,6 +105,7 @@ public class ElectricEffect : MonoBehaviour
             .CompareTo((b.position - transform.position).sqrMagnitude)
         );
 
+        int nb = 0;
         // Parcourt les cibles, cherche la première sortie de latence
         foreach (var t in candidates)
         {
@@ -89,8 +116,22 @@ public class ElectricEffect : MonoBehaviour
                     // on l'ajoute aux vus, et on l'active
                     seen.Add(t);
                     other.ActivateElectricEffect();
-                    Debug.Log($"{other.name} electrified by {name} at {Time.time}");
-                    break;
+                    target = t;
+
+                    if (target != null)
+                    {
+                        Vector3 pos = transform.InverseTransformPoint(target.position);
+                        lineRenderer.SetPosition(1, pos);
+                    }
+
+                    if(nb < maxTransmition)
+                    {
+                        nb++;
+                    }
+                    else
+                    {
+                        break;
+                    }                    
                 }
                 // sinon on passe au suivant
             }

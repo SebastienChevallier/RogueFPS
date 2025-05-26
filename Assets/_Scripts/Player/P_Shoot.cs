@@ -6,6 +6,7 @@ public class P_Shoot : MonoBehaviour
     private P_Weapon _weaponManager;
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
