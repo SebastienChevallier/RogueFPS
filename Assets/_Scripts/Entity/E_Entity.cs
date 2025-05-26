@@ -23,7 +23,7 @@ public class E_Entity : MonoBehaviour, I_Health
         }
     }
 
-    public void OnDie()
+    public virtual void OnDie()
     {
        gameObject.SetActive(false);
     }
