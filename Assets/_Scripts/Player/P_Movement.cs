@@ -8,6 +8,7 @@ public class P_Movement : MonoBehaviour
     public float airSpeedMulti;
     public float JumpForce;
     [Range(-30, 0)]public float GravityForce;
+    public float DashForce;
     
 
     public Rigidbody _rb;
@@ -15,6 +16,7 @@ public class P_Movement : MonoBehaviour
     public float descreaseFactor = 0.1f;
     public Vector3 _dir;
     public bool _isGrounded;
+    private bool _hasDashed;
 
     private void Start()
     {
@@ -53,8 +55,9 @@ public class P_Movement : MonoBehaviour
             {
                 _isGrounded = true;
                 airSpeedMulti = 1;
-                //_dir.y = 0;
-            }            
+                
+            }
+            _hasDashed = false;
         }
         else
         {
@@ -109,5 +112,28 @@ public class P_Movement : MonoBehaviour
         {
             _velocity = Vector3.Lerp(_velocity, Vector3.zero, Time.deltaTime * descreaseFactor * 100);
         }           
+    }
+
+    public void Dash()
+    {
+        Vector3 dashDirection = Vector3.zero;
+
+        dashDirection += _dir.x * transform.right;
+        dashDirection += _dir.z * transform.forward;        
+
+        dashDirection.y = 0;
+
+        if (!_hasDashed)
+        {
+            if (dashDirection.magnitude > 0)
+            {
+                Impulse(dashDirection * DashForce);
+            }
+            else
+            {
+                Impulse(transform.forward * DashForce);
+            }
+            _hasDashed = true;
+        }              
     }
 }

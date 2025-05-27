@@ -23,7 +23,12 @@ public class ElectricSMG : BaseWeapon
             if (hit.collider.TryGetComponent<ElectricEffect>(out ElectricEffect EE))
             {
                 EE.ActivateElectricEffect();
-            }            
+            }
+
+            if (hit.collider.TryGetComponent<I_Health>(out I_Health health))
+            {
+                health.
+            }
         }
         return hits;
     }
