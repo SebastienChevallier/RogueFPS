@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3820642453741583882}
   - component: {fileID: 11011099048771109}
   - component: {fileID: 6867547387989193595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499569651140440887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 4890623406012554878}
   - component: {fileID: 7222097436159126196}
   - component: {fileID: 5287009836733033898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pyke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 645533091906030350}
   - component: {fileID: 6070360975783076041}
   - component: {fileID: 7686260859612716514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  reactivationDelay: 0.5
+  reactivationDelay: 0.2
   dmg: 15
   maxTransmition: 1
   isActive: 0

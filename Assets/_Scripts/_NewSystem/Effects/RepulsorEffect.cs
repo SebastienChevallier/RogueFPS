@@ -13,7 +13,10 @@ public class RepulsorEffect : AEffect
     {        
         if(body != null)
         {
-            body.AddForce((Vector3)arg[0], ForceMode.Impulse);
+            Vector3 direction = (Vector3)arg[0];
+            direction.y = 0f;
+            body.AddForce(direction, ForceMode.Impulse);
+            body.maxLinearVelocity = 100f;
         }
     }
 

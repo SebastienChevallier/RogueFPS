@@ -1819,7 +1819,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CastShadows": true,
+    "m_CastShadows": false,
     "m_ReceiveShadows": true,
     "m_DisableTint": false,
     "m_AdditionalMotionVectorMode": 0,
@@ -3384,9 +3384,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -204.80006408691407,
-            "y": 1523.2000732421875,
-            "width": 208.0000457763672,
+            "x": -204.80003356933595,
+            "y": 1431.9998779296875,
+            "width": 208.0000762939453,
             "height": 124.0
         }
     },
@@ -4704,9 +4704,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 107.20003509521485,
-            "y": 1431.9998779296875,
-            "width": 208.0,
+            "x": 59.99999237060547,
+            "y": 1537.599853515625,
+            "width": 207.99993896484376,
             "height": 301.5999755859375
         }
     },
