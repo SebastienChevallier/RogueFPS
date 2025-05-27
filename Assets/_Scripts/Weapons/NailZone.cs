@@ -20,6 +20,7 @@ public class NailZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject);
         if (other.gameObject.layer == LayerMask.NameToLayer(layerName))
         {
             print("add");
