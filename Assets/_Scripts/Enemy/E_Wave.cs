@@ -69,8 +69,8 @@ public class E_Wave : MonoBehaviour
             {
                 continue;
             }
-            spawner.TrySpawnEnemy();
-            OnSpawnEnemy();
+            if (spawner.TrySpawnEnemy());
+                OnSpawnEnemy();
         }
     }
 

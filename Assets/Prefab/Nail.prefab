@@ -427,7 +427,7 @@ Transform:
   m_GameObject: {fileID: 9167911753930607457}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 645533091906030350}
   - component: {fileID: 6070360975783076041}
   - component: {fileID: 7686260859612716514}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Nail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,8 +565,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.86, y: 0.43, z: 0.91}
-  m_Center: {x: -0.0020547733, y: 0, z: -0.027755976}
+  m_Size: {x: 0.68, y: 0.62, z: 0.73}
+  m_Center: {x: -0.0020547733, y: 0.13, z: -0.027755976}
 --- !u!114 &9122883449772807735
 MonoBehaviour:
   m_ObjectHideFlags: 0

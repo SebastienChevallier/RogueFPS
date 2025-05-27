@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 97204935}
   - component: {fileID: 97204934}
   - component: {fileID: 97204937}
+  - component: {fileID: 97204938}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -355,6 +356,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 1.1
+--- !u!208 &97204938
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97204932}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &116562011
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +390,7 @@ GameObject:
   - component: {fileID: 116562020}
   - component: {fileID: 116562021}
   - component: {fileID: 116562022}
+  - component: {fileID: 116562023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -465,7 +483,7 @@ Transform:
   m_GameObject: {fileID: 116562011}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.936657, y: 1.9837708, z: -2.4240339}
+  m_LocalPosition: {x: -7.936657, y: 11.3, z: -2.4240339}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -732,6 +750,19 @@ MonoBehaviour:
   Weapons: []
   CurrentWeapon: {fileID: 0}
   indexWeapon: 0
+--- !u!114 &116562023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116562011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fde439ca6c3a1f4e8c8bc3f0b28d097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p_Movement: {fileID: 116562018}
 --- !u!1 &126208659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1111,7 @@ GameObject:
   - component: {fileID: 312643338}
   - component: {fileID: 312643337}
   - component: {fileID: 312643336}
+  - component: {fileID: 312643340}
   m_Layer: 0
   m_Name: Sol
   m_TagString: Ground
@@ -1176,6 +1208,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 630674993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &312643340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312643335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 4a2ed313380ad4d41a0953bdd1f58452, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &321408195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1286,7 @@ GameObject:
   - component: {fileID: 349674182}
   - component: {fileID: 349674181}
   - component: {fileID: 349674184}
+  - component: {fileID: 349674185}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1332,6 +1397,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0.5
+--- !u!208 &349674185
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349674179}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &368996104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,6 +1723,7 @@ GameObject:
   - component: {fileID: 558294576}
   - component: {fileID: 558294575}
   - component: {fileID: 558294578}
+  - component: {fileID: 558294579}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -1752,6 +1834,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0.5
+--- !u!208 &558294579
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558294573}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &630674992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,6 +1895,7 @@ GameObject:
   - component: {fileID: 661826937}
   - component: {fileID: 661826936}
   - component: {fileID: 661826939}
+  - component: {fileID: 661826940}
   m_Layer: 0
   m_Name: Cylinder (3)
   m_TagString: Untagged
@@ -1907,6 +2006,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 0.5
+--- !u!208 &661826940
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661826934}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &828570966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,6 +3241,14 @@ PrefabInstance:
     - target: {fileID: 961218428080914315, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
       propertyPath: m_Name
       value: WaveManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574947414553027869, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
+      propertyPath: delayOnSpawn
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574947414553027869, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
+      propertyPath: maxEnemyInMap
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7882842645103030933, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
       propertyPath: m_LocalPosition.x

@@ -8,7 +8,7 @@ public class E_Spawner : MonoBehaviour
     private List<E_enemy> enemyPrefabs;
 
     private E_Wave waveManager;
-    private bool canSpawn = false;
+    private bool canSpawn = true;
 
     private void Start()
     {
@@ -16,13 +16,16 @@ public class E_Spawner : MonoBehaviour
         waveManager.AddSpawner(this);
     }
 
-    public void TrySpawnEnemy()
+    public bool TrySpawnEnemy()
     {
         if (canSpawn)
         {
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
+            E_enemy go = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
+            go.transform.position = transform.position;
             StartCoroutine(DelayOnSpawn());
+            return true;
         }
+        return false;
     }
 
     private IEnumerator DelayOnSpawn()
