@@ -5444,7 +5444,8 @@ MonoBehaviour:
   distance: 30
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
+  Damage: 2
 --- !u!95 &1942574066701581259
 Animator:
   serializedVersion: 7

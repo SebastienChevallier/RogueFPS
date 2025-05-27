@@ -5,6 +5,7 @@ public class ElectricSMG : BaseWeapon
 {
     public float distance;
     public LayerMask layerMask;
+    public int Damage;
     public override void Shoot()
     {
         if (!isRecoiling)
@@ -27,7 +28,7 @@ public class ElectricSMG : BaseWeapon
 
             if (hit.collider.TryGetComponent<I_Health>(out I_Health health))
             {
-                health.
+                health.OnDecreaseHealth(Damage);
             }
         }
         return hits;
