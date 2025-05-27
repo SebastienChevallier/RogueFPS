@@ -127,11 +127,11 @@ public class P_Movement : MonoBehaviour
         {
             if (dashDirection.magnitude > 0)
             {
-                Impulse(dashDirection * DashForce);
+                Impulse(dashDirection * DashForce * airSpeedMulti);
             }
             else
             {
-                Impulse(transform.forward * DashForce);
+                Impulse(transform.forward * DashForce * airSpeedMulti);
             }
             _hasDashed = true;
         }              

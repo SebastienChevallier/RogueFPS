@@ -3,7 +3,27 @@ guid: 0c4cc67741efb5541a1f797d70189e27
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base
+    second: {fileID: 2100000, guid: ac91d461ca04b9a4799472a7641a83a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cap
+    second: {fileID: 2100000, guid: 552f17f5c0b5a6b4984f8e15e14fb982, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ring
+    second: {fileID: 2100000, guid: 4013e3dfedc6bc44886c132a323d9c5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skirt
+    second: {fileID: 2100000, guid: a89d37a46b092fa4fb6874af198ed217, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -16,8 +36,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
