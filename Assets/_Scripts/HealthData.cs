@@ -5,6 +5,5 @@ public class HealthData : ScriptableObject
 {
     public int maxHealth;
 
-    [HideInInspector]
     public int health;
 }
