@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 4890623406012554878}
   - component: {fileID: 7222097436159126196}
   - component: {fileID: 5287009836733033898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pyke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

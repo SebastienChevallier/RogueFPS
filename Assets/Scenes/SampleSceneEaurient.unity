@@ -3248,7 +3248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574947414553027869, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
       propertyPath: maxEnemyInMap
-      value: 5
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574947414553027869, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
+      propertyPath: baseNumberOfEnemy
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7882842645103030933, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
       propertyPath: m_LocalPosition.x

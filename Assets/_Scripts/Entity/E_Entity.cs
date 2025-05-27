@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class E_Entity : MonoBehaviour, I_Health
 {
     public HealthData healthData;
+    public bool isDie;
     public virtual void Start()
     {
         healthData = Instantiate(healthData);
@@ -17,7 +19,7 @@ public class E_Entity : MonoBehaviour, I_Health
     public void OnDecreaseHealth(int amount)
     {
         healthData.health -= amount;
-        if (healthData.health <= 0)
+        if (healthData.health <= 0 && !isDie)
         {
             OnDie();
         }
@@ -25,6 +27,7 @@ public class E_Entity : MonoBehaviour, I_Health
 
     public virtual void OnDie()
     {
-       gameObject.SetActive(false);
+        isDie = true;
+        Destroy(gameObject);
     }
 }

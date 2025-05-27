@@ -12,7 +12,10 @@ public class E_enemy : E_Entity
 
     private void Update()
     {
-        agent.SetDestination(PlayerModel.instance.playerPos);
+        if (agent.isActiveAndEnabled)
+        {
+            agent.SetDestination(PlayerModel.instance.playerPos);
+        }
     }
 
     public override void OnDie()
