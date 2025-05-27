@@ -17,6 +17,8 @@ public class E_Wave : MonoBehaviour
     [SerializeField]
     private float delayBetweenWave;
     [SerializeField]
+    private float delayOnSpawn;
+    [SerializeField]
     private int maxEnemyInMap;
 
     [Header("EnemySettings")]
@@ -27,8 +29,7 @@ public class E_Wave : MonoBehaviour
     [SerializeField]
     private int baseNumberOfEnemy;
     public int WaveIndex => _waveIndex;
-    public bool isMaxEnemyInstanciate => _enemyInstantiateNumber >= maxEnemyInMap;
-    public int TotalLifeIncrease => _totalLifeIncrease;
+    public float DelayOnSpawn => delayOnSpawn;
     public bool IsInWave => _isInWave;
 
     private int _waveIndex = 0;
@@ -68,7 +69,7 @@ public class E_Wave : MonoBehaviour
             {
                 continue;
             }
-            spawner.SpawnEnemy();
+            spawner.TrySpawnEnemy();
             OnSpawnEnemy();
         }
     }

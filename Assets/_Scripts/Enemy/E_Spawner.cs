@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class E_Spawner : MonoBehaviour
     private List<E_enemy> enemyPrefabs;
 
     private E_Wave waveManager;
+    private bool canSpawn = false;
 
     private void Start()
     {
@@ -14,8 +16,19 @@ public class E_Spawner : MonoBehaviour
         waveManager.AddSpawner(this);
     }
 
-    public void SpawnEnemy()
+    public void TrySpawnEnemy()
     {
-        Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
+        if (canSpawn)
+        {
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
+            StartCoroutine(DelayOnSpawn());
+        }
+    }
+
+    private IEnumerator DelayOnSpawn()
+    {
+        canSpawn = false;
+        yield return new WaitForSeconds(waveManager.DelayOnSpawn);
+        canSpawn = true;
     }
 }
