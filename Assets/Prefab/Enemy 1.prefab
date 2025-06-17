@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7249682868137596546}
   - component: {fileID: 2505374421255364203}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  animationTime: 0.01
+  animationTime: 0
 --- !u!114 &2505374421255364203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +256,6 @@ MonoBehaviour:
   body: {fileID: 4439665608299619163}
   agent: {fileID: 3666512684007837222}
   mainCollider: {fileID: 4193825913534637444}
-  spineBody: {fileID: 2431206164500381016}
   minRagdollMagnitude: 15
   delayOnDisableRagdoll: 0.5
   maxRagdollToDisable: 0.5
@@ -791,7 +790,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636826657534972359}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 7693111737684817535}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
@@ -892,7 +891,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774234117745964799}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 2431206164500381016}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
@@ -993,7 +992,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273727848953811472}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 7753020433883932629}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
@@ -1097,7 +1096,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864625965507539203}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 2431206164500381016}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -1198,7 +1197,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2698116071684860761}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 487666896261088177}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -1299,7 +1298,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2857322500029235447}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 274677966820614322}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
@@ -1398,7 +1397,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2932634207325182144}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 1250238622879331309}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -1552,7 +1551,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4940555944789377537}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 5014636668117878444}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
@@ -1653,7 +1652,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5045447914371482597}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 2431206164500381016}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
@@ -1754,7 +1753,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5991709741112656137}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 1250238622879331309}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
@@ -1855,7 +1854,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6955378174737005547}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 1250238622879331309}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
@@ -1956,7 +1955,7 @@ CharacterJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7876370087625006828}
   serializedVersion: 3
-  m_ConnectedBody: {fileID: 2330930327535021221}
+  m_ConnectedBody: {fileID: 4439665608299619163}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
