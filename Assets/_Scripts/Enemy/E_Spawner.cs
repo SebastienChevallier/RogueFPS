@@ -22,6 +22,8 @@ public class E_Spawner : MonoBehaviour
         {
             E_enemy go = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)]);
             go.transform.position = transform.position;
+            go.transform.parent = transform;
+            canSpawn = false;
             StartCoroutine(DelayOnSpawn());
             return true;
         }
@@ -30,7 +32,6 @@ public class E_Spawner : MonoBehaviour
 
     private IEnumerator DelayOnSpawn()
     {
-        canSpawn = false;
         yield return new WaitForSeconds(waveManager.DelayOnSpawn);
         canSpawn = true;
     }

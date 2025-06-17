@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 116562021}
   - component: {fileID: 116562022}
   - component: {fileID: 116562023}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -676,6 +676,7 @@ MonoBehaviour:
   airSpeedMulti: 1
   JumpForce: 55
   GravityForce: -1.5
+  DashForce: 0
   _rb: {fileID: 0}
   _velocity: {x: 0, y: 0, z: 0}
   descreaseFactor: 0.1
@@ -2408,6 +2409,7 @@ MonoBehaviour:
   grip1: {fileID: 1409907022}
   grip2: {fileID: 126208661}
   edgesMaterial: {fileID: 2100000, guid: f6c44316bcd09b842b85921bdf8b09a6, type: 2}
+  duration: 0
   actualColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1093335750
 GameObject:
@@ -3248,7 +3250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574947414553027869, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
       propertyPath: maxEnemyInMap
-      value: 5
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574947414553027869, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
+      propertyPath: baseNumberOfEnemy
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7882842645103030933, guid: f05dbc95fd34bc641ab981026061eb50, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class E_Wave : MonoBehaviour
@@ -65,17 +66,20 @@ public class E_Wave : MonoBehaviour
 
         foreach (E_Spawner spawner in spawnerInMap)
         {
-            if (_enemyInstantiateNumber >= maxEnemyInMap)
+            if (_enemyInstantiateNumber >= maxEnemyInMap || _enemyNumberLeft <= 0 || _enemyInstantiateNumber >= _enemyNumberLeft)
             {
                 continue;
             }
-            if (spawner.TrySpawnEnemy());
+            if (spawner.TrySpawnEnemy())
+            {
                 OnSpawnEnemy();
+            }
         }
     }
 
     private void RoundEnd()
     {
+        _isInWave = false;
         _additionalEnemyCount += enemyNumberIncrease[WaveIndex % enemyNumberIncrease.Count];
         _totalLifeIncrease += lifeIncrease[WaveIndex % lifeIncrease.Count];
         _waveIndex++;
@@ -90,6 +94,7 @@ public class E_Wave : MonoBehaviour
 
     public void OnEnemyDie()
     {
+        _enemyInstantiateNumber--;
         _enemyNumberLeft--;
         if (_enemyNumberLeft <= 0)
         {
