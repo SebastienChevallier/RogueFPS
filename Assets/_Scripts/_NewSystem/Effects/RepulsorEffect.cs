@@ -16,7 +16,7 @@ public class RepulsorEffect : AEffect
             Vector3 direction = (Vector3)arg[0];
             direction.y = 0f;
             body.AddForce(direction, ForceMode.Impulse);
-            body.maxLinearVelocity = 100f;
+            body.maxLinearVelocity = 300f;
         }
     }
 
