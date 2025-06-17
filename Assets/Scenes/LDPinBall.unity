@@ -5057,6 +5057,14 @@ PrefabInstance:
       propertyPath: weaponColor.r
       value: 0.7137255
       objectReference: {fileID: 0}
+    - target: {fileID: 3078212969009663886, guid: 637c6a23641d2c04687b53612763c945, type: 3}
+      propertyPath: ShootEvents.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078212969009663886, guid: 637c6a23641d2c04687b53612763c945, type: 3}
+      propertyPath: ShootEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4425683521195110483, guid: 637c6a23641d2c04687b53612763c945, type: 3}
       propertyPath: m_Name
       value: Repulsor
