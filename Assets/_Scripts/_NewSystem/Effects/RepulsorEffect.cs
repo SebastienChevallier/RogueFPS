@@ -16,7 +16,7 @@ public class RepulsorEffect : AEffect
             Vector3 direction = (Vector3)arg[0];
             direction.y = 0f;
             body.AddForce(direction, ForceMode.Impulse);
-            body.maxLinearVelocity = 300f;
+            body.maxLinearVelocity = 700f;
         }
     }
 
@@ -42,7 +42,9 @@ public class RepulsorEffect : AEffect
 
     private void Update()
     {
-        if(timer <= animationTime)
+        if(visual == null)return;
+
+        if (timer <= animationTime)
         {
             timer += Time.deltaTime;           
             visual.transform.localScale = curve.Evaluate(timer / animationTime) * Vector3.one;

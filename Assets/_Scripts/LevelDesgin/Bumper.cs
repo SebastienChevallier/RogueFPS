@@ -5,7 +5,7 @@ public class Bumper : MonoBehaviour
 {
     public float power;
     public UnityEvent eventTrigger;
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if(collision.transform.TryGetComponent<RepulsorEffect>(out RepulsorEffect re))
         {

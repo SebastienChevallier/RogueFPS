@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: c3e892db83f1adb49a1c18b15f231589
-AssetOrigin:
-  serializedVersion: 1
-  productId: 183370
-  packageName: Feel
-  packageVersion: 5.4
-  assetPath: Assets/Feel/MMTools/Accessories/MMVFX/MMParticles/MMParticlesSmoke.png
-  uploadId: 729165
+guid: d7fb5e70fe8a42d469e9c8f79fe4a7d3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -59,7 +52,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
   textureShape: 1
@@ -70,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
