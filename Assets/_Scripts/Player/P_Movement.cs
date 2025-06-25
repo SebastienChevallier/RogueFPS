@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class P_Movement : MonoBehaviour
@@ -17,6 +18,9 @@ public class P_Movement : MonoBehaviour
     public Vector3 _dir;
     public bool _isGrounded;
     private bool _hasDashed;
+
+    public UnityEvent JumpEvent;
+    public UnityEvent DashEvent;
 
     private void Start()
     {
@@ -92,6 +96,7 @@ public class P_Movement : MonoBehaviour
             _isGrounded = false;
             _dir.y = 0;            
             _dir.y = JumpForce;
+            JumpEvent.Invoke();
         }        
     }
 
@@ -99,7 +104,8 @@ public class P_Movement : MonoBehaviour
     {
         //_velocity = Vector3.zero;
         _dir.y = 0;        
-        _velocity = direction;        
+        _velocity = direction;
+        _rb.maxLinearVelocity = 500f;
     }
 
     public void Gravity()
@@ -133,6 +139,7 @@ public class P_Movement : MonoBehaviour
             {
                 Impulse(transform.forward * DashForce * airSpeedMulti);
             }
+            DashEvent.Invoke();
             _hasDashed = true;
         }              
     }
