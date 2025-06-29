@@ -14,6 +14,10 @@ public class P_Movement : MonoBehaviour
     public Vector3 _velocity;
     public Vector3 _dir;
     public bool _isGrounded;
+    [Header("Ground Check Settings")]
+    public float GroundCheckDistance = 1.1f;
+    public float GroundCheckRadius = 0.25f;
+    public LayerMask GroundMask = ~0;
 
     private void Start()
     {
@@ -23,9 +27,10 @@ public class P_Movement : MonoBehaviour
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
+    // FixedUpdate is called every physics step
     void FixedUpdate()
     {
+        CheckGround();
         Vector3 FinalVelocity = Vector3.zero;
         
         FinalVelocity += _dir.x * transform.right * Speed * airSpeedMulti;
@@ -43,17 +48,18 @@ public class P_Movement : MonoBehaviour
         Gravity();
     }
 
-    private void Update()
+    private void CheckGround()
     {
+        Vector3 origin = transform.position - transform.up * (GroundCheckDistance - GroundCheckRadius);
+        bool grounded = Physics.CheckSphere(origin, GroundCheckRadius, GroundMask);
 
-        if (Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (grounded)
         {
-            if(!_isGrounded) 
+            if (!_isGrounded)
             {
                 _isGrounded = true;
                 airSpeedMulti = 1;
-                //_dir.y = 0;
-            }            
+            }
         }
         else
         {
