@@ -66,10 +66,10 @@ public class E_Wave : MonoBehaviour
 
         foreach (E_Spawner spawner in spawnerInMap)
         {
-            if (_enemyInstantiateNumber >= maxEnemyInMap || _enemyNumberLeft <= 0 || _enemyInstantiateNumber >= _enemyNumberLeft)
+/*            if (_enemyInstantiateNumber >= maxEnemyInMap || _enemyNumberLeft <= 0 || _enemyInstantiateNumber >= _enemyNumberLeft)
             {
                 continue;
-            }
+            }*/
             if (spawner.TrySpawnEnemy())
             {
                 OnSpawnEnemy();
