@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ public class E_RagdollEffect : MonoBehaviour
     public NavMeshAgent agent;
     public Collider mainCollider;
     public Rigidbody spineBody;
+    public Transform _renderer;
 
     Rigidbody[] rigidbodies;
     Collider[] ragdollColliders;
@@ -65,10 +67,10 @@ public class E_RagdollEffect : MonoBehaviour
         spineBody.linearVelocity = body.linearVelocity;
     }
 
-    public void DisableRagdoll()
+    public async void DisableRagdoll()
     {
         isEnableRagdoll = false;
-        //Activer timer
+        await Task.Delay(500);
         body.constraints = RigidbodyConstraints.FreezeRotation;
         agent.enabled = true;
         ToggleRagdoll(true);
@@ -78,6 +80,11 @@ public class E_RagdollEffect : MonoBehaviour
             info.bone.localPosition = info.position;
             info.bone.localRotation = info.rotation;
         }
+        transform.position += Vector3.up * 1;
+
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        transform.parent.localRotation = Quaternion.identity;
     }
 
     void ToggleRagdoll(bool activate)
@@ -91,7 +98,7 @@ public class E_RagdollEffect : MonoBehaviour
             col.enabled = !activate;
         }
         
-        mainCollider.enabled = activate;
+        //mainCollider.enabled = activate;
     }
 }
 

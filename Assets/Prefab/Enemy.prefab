@@ -257,7 +257,8 @@ MonoBehaviour:
   agent: {fileID: 3666512684007837222}
   mainCollider: {fileID: 4193825913534637444}
   spineBody: {fileID: 2431206164500381016}
-  minRagdollMagnitude: 15
+  _renderer: {fileID: 0}
+  minRagdollMagnitude: 25
   delayOnDisableRagdoll: 0.5
   maxRagdollToDisable: 0.5
   isEnableRagdoll: 0
