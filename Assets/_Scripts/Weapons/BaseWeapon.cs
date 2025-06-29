@@ -1,7 +1,18 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseWeapon : AWeapon
 {
+    public Color weaponColor = Color.white;
+    public HUD_InGame hud;
+    public UnityEvent ShootEvents;
+    public UnityEvent RecoilEvents;
+
+    public void OnEnable()
+    {
+        hud.UpdateColorCursor(weaponColor);
+    }
+
     public override void Recoil()
     {
         if(isRecoiling)
@@ -16,6 +27,7 @@ public class BaseWeapon : AWeapon
             {                
                 isRecoiling = false;
                 recoilTime = 0;
+                RecoilEvents.Invoke();
                 //Debug.Log("Recoiled");
             }            
         }        
@@ -33,12 +45,14 @@ public class BaseWeapon : AWeapon
 
     public override void Shoot()
     {
+
         if(!isRecoiling) 
         { 
             isRecoiling = true;
             //Debug.Log("Shoot");
+            ShootEvents.Invoke();
 
-            if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 100f))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, 100f))
             {
                 //Debug.Log("Hit");
             }
@@ -48,7 +62,7 @@ public class BaseWeapon : AWeapon
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = transform.parent.parent.gameObject;
+        player = transform.parent.parent.parent.gameObject;
     }
 
     // Update is called once per frame

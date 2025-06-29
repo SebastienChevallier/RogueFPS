@@ -21,6 +21,7 @@ public class GlussCanon : BaseWeapon
         ResetIfNeeded();
 
         if (!TryGetHit(out RaycastHit hit)) return;
+        ShootEvents.Invoke();
 
         if (nbOfAttach == 0)
             HandleFirstShot(hit);
@@ -60,6 +61,7 @@ public class GlussCanon : BaseWeapon
         anchorRb = null;
         targetRb = null;
         // anchorPoint et targetPoint restent intacts
+        hud.WeaponIsActive(false);
     }
 
     // ─── PREMIER TIR ───────────────────────────────────────────────────────────────
@@ -68,12 +70,14 @@ public class GlussCanon : BaseWeapon
         CreateRopeAt(hit.point);
         RecordAnchor(hit);
         nbOfAttach = 1;
+        hud.UpdateWeaponStatus(1);
     }
 
     private void CreateRopeAt(Vector3 position)
     {
         rope = Instantiate(ropePrefab, position, Quaternion.identity);
         Debug.Log("Corde instanciée");
+        
     }
 
     private void RecordAnchor(RaycastHit hit)
@@ -96,6 +100,7 @@ public class GlussCanon : BaseWeapon
         RecordTarget(hit);
         SetupElasticJoint();
         nbOfAttach = 2;
+        hud.UpdateWeaponStatus(2);
     }
 
     private void RecordTarget(RaycastHit hit)

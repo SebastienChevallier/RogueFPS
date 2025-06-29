@@ -5,6 +5,7 @@ public class NailZone : MonoBehaviour
 {
     public Rigidbody rb;
     private string layerName;
+    private ElectricEffect electricEffect;
 
     private Dictionary<E_enemy, float> enemyTimers = new Dictionary<E_enemy, float>();
     private Dictionary<E_enemy, float> enemyTimersSecure = new Dictionary<E_enemy, float>();
@@ -15,10 +16,12 @@ public class NailZone : MonoBehaviour
     {
         layerName = "Enemy";
         _nailData = nailData;
+        electricEffect = GetComponent<ElectricEffect>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject);
         if (other.gameObject.layer == LayerMask.NameToLayer(layerName))
         {
             print("add");
@@ -78,7 +81,12 @@ public class NailZone : MonoBehaviour
 
     private void Damage(E_Entity entity)
     {
-        entity.OnDecreaseHealth(_nailData.Damage);
+        int additionalDMG = 0;
+        if (electricEffect != null && electricEffect.isActive)
+        {
+            additionalDMG = electricEffect.dmg;
+        }
+        entity.OnDecreaseHealth(_nailData.Damage + additionalDMG);
         print($"Damage : {_nailData.Damage}, to {entity.name}");
     }
 }
