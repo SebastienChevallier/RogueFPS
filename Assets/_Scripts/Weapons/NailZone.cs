@@ -9,6 +9,7 @@ public class NailZone : MonoBehaviour
     private Dictionary<E_enemy, float> enemyTimers = new Dictionary<E_enemy, float>();
     private Dictionary<E_enemy, float> enemyTimersSecure = new Dictionary<E_enemy, float>();
 
+    private readonly List<E_enemy> toRemove = new List<E_enemy>();
     private NailGunData _nailData;
     public void Init(NailGunData nailData)
     {
@@ -26,12 +27,8 @@ public class NailZone : MonoBehaviour
     }
     void Update()
     {
-        // Liste des ennemis à retirer à la fin
-        List<E_enemy> toRemove = new List<E_enemy>();
-
-        // On fait une copie des paires pour itérer en sécurité
-        var enemies = new List<KeyValuePair<E_enemy, float>>(enemyTimers);
-
+        toRemove.Clear();
+        foreach (var pair in enemyTimers)
         foreach (var pair in enemies)
         {
             E_enemy enemy = pair.Key;
