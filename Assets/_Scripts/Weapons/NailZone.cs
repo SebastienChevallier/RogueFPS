@@ -32,7 +32,7 @@ public class NailZone : MonoBehaviour
     {
         toRemove.Clear();
         foreach (var pair in enemyTimers)
-        foreach (var pair in enemies)
+        //foreach (var pair in enemies)
         {
             E_enemy enemy = pair.Key;
 
